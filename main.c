@@ -27,12 +27,7 @@ return result;
 
 void
 imgBlend(int w1,                  // first input image (and result) width
-         int h1,                  // first input image (and result) height
-         const unsigned char *d1, // first input image pixels (3*w1*h1 bytes)
-         int w2,                  // second input image width
-         int h2,                  // second input image height
-         const unsigned char *d2, // second input image pixels (3*w2*h2 bytes)
-         int k,                   // cursor value within range [0;100]
+
          unsigned char *d)        // resulting image pixels (3*w1*h1 bytes)
 {
 
@@ -43,10 +38,7 @@ for ( int i = 0; i < h1; ++i)
   {
     int i2,j2;
     i2=i*h2/h1;
-    j2=j*w2/w1;
-    d[3*(i*w1+j)] = (d1[3*(i*w1+j)]*(1-k/100.))+(d2[3*(i2*w2+j2)]*k/100.);
-    d[3*(i*w1+j)+1] = (d1[3*(i*w1+j)+1]*(1-k/100.))+(d2[3*(i2*w2+j2)+1]*k/100.);
-    d[3*(i*w1+j)+2] = (d1[3*(i*w1+j)+2]*(1-k/100.))+(d2[3*(i2*w2+j2)+2]*k/100.);
+
   }
 }
 

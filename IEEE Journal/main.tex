@@ -66,6 +66,7 @@
 \documentclass[journal]{IEEEtran}
 \usepackage{blindtext}
 \usepackage{graphicx}
+\usepackage[utf8]{inputenc}
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -163,7 +164,7 @@
 
 % *** MATH PACKAGES ***
 %
-%\usepackage[cmex10]{amsmath}
+\usepackage[cmex10]{amsmath}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics. If using
 % it, be sure to load this package with the cmex10 option to ensure that
@@ -174,7 +175,7 @@
 %
 % Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
 % thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
+\interdisplaylinepenalty=2500
 % after loading amsmath to restore such page breaks as IEEEtran.cls normally
 % does. amsmath.sty is already installed on most LaTeX systems. The latest
 % version and documentation can be obtained at:
@@ -245,7 +246,7 @@
 
 
 % *** SUBFIGURE PACKAGES ***
-%\usepackage[tight,footnotesize]{subfigure}
+\usepackage[tight,footnotesize]{subfigure}
 % subfigure.sty was written by Steven Douglas Cochran. This package makes it
 % easy to put subfigures in your figures. e.g., "Figure 1a and 1b". For IEEE
 % work, it is a good idea to load it with the tight package option to reduce
@@ -387,7 +388,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{IEEE Journal Template Example}
+\title{Recherche Operationnelle}
 %
 %
 % author names and IEEE memberships
@@ -399,14 +400,12 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Michael~Shell,~\IEEEmembership{Member,~IEEE,}
-        John~Doe,~\IEEEmembership{Fellow,~OSA,}
-        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
-\thanks{M. Shell is with the Department
-of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
-GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
-\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
-\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
+\author{Mauricio~Caceres,~\IEEEmembership{Master,~SISEA,ENSSAT,~Lannion}
+      %  and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+\thanks{M. Pascal Scalart,~Pôle Electronique, Enssat, Lannion,
+France  e-mail: (pascal.scalart@univ-rennes1.fr).}}% <-this % stops a space
+%\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+%\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name
@@ -495,8 +494,14 @@ IEEEtran, journal, \LaTeX, paper, template.
 
 \section{Introduction}
 \blindtext
-
-\subsection{Subsection Heading Here}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+\subsection{Objectifs}
 \blindtext
 
 % needed in second column of first page if using \IEEEpubid
@@ -585,14 +590,92 @@ IEEEtran, journal, \LaTeX, paper, template.
 % stfloats package.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			YOUR CONTENT HERE 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Modélisation d’un neurone}
+\blindtext
+\section{Le perceptron et sa version multicouche}\blindtext
+\subsection{Le perceptron : fonctions de transition classiques}\blindtext
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=2.5in]{logo}
+%TODO change the image and the caption and label
+\caption{Simulation Results}
+\label{fig_sim}
+\end{figure}
+
+\subsection{Le perceptron : rôle de l’unité de biais}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+
+\subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+
+\subsection{Le perceptron multi-couches}\blindtext
+\section{L’apprentissage supervisé}\blindtext
+\subsection{Le perceptron multicouche}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+
+\subsection{Cas du perceptron simple : Comment trouver les poids du réseau}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+
+\subsection{Cas d’un perceptron multicouche : calcul du vecteur gradient}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+
+\section{Quelques règles à suivre...si on veut que cela converge}\blindtext
+\section{temas Annexe A –}\blindtext
+
+
+
 
 \section{Conclusion}
 \blindtext
 
 
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%			ALL THE SCIENTIFIC'S STUFF FINISH HERE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % if have a single appendix:
 %\appendix[Proof of the Zonklar Equations]
 % or

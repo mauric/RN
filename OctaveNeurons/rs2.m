@@ -80,8 +80,7 @@ L_in = 4097+1;%on rajoute le bias
 L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
 
-%Init taux d'apprentissage
-mu = 0.4;
+
 
 %Init parametres de distribution de proba. poids
 sigma1=1/sqrt(L_in);
@@ -107,6 +106,8 @@ boucle=1;
 i = 1;
 more off;
 
+%Init taux d'apprentissage
+mu = 0.5;
 tic; % init counter time
 while(boucle==1)
     %reorganisation des examples
@@ -192,18 +193,18 @@ xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 
 figure(5)
-plot(W,'-o','LineWidth',2)
-axis ([0 120 -0.8 0.8])
-grid()
-title('Final Weights ','FontSize',12);
-xlabel('Weight id','FontSize',12);
-ylabel('Weight value','FontSize',12);
-
-figure(6)
+subplot (2, 1, 1)
 plot(W_init,'-o','LineWidth',2)
 axis ([0 120 -0.8 0.8])
 grid()
 title('Initial Weights (Normal distribution initialisation) ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+subplot (2, 1, 2)
+plot(W,'-o','LineWidth',2)
+axis ([0 120 -0.8 0.8])
+grid()
+title('Final Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 

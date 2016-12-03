@@ -20,6 +20,11 @@ close all
 display('//================================================================//')
 display('//                    RECHERCHE OPERATIONNELLE                    //')
 display('//================================================================//')
+display('')
+display('//=========================- RS 3 -===============================//')
+display('// MLP : 3 cases ofmu variable, special Weight initialisation     //')
+display('//================================================================//')
+
 
 %% Exercise 2 - S�lection des attibuts de la base de donn�s d'apprentissage
 in = 1;
@@ -65,11 +70,6 @@ L_in = 4097+1;%on rajoute le bias
 L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
 
-%Init taux d'apprentissage
-alpha = 0.1;
-muo = 0.6
-mu = muo/(1+alpha*1);
-
 %Init parametres de distribution de proba. poids
 sigma1=1/sqrt(L_in);
 sigma2 = 1/sqrt(L_cachee);
@@ -93,7 +93,11 @@ iter =1;
 boucle=1;
 i = 1;
 more off;
-
+%Init taux d'apprentissage
+experience = 3;
+alpha = [1.2 0.5 .01];
+muo = 0.5;
+mu = muo/(1+alpha(experience)*1);
 tic; % init counter time
 while(boucle==1)
     %reorganisation des examples
@@ -146,9 +150,9 @@ while(boucle==1)
           deltaj_out(neurone) = gprime(vj(neurone))*somme_delta_w(neurone);
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
-        mu = muo/(1+alpha*i);
+        mu = muo/(1+alpha(experience)*i);
         storemu(i)=mu; %store for graphs
- %pause
+
     end
     %je calcule un "error" pour l'afficher aussi
     error = sum(epsilon)/60
@@ -160,17 +164,25 @@ while(boucle==1)
     iter = iter +1; %counter associate to the while loop
     if(error<=e)
         boucle = 0;
-    end
+    endif
 end
 elapsed_time = toc;
 
 
 %% calcul de Erreur quadratique moyenne
 figure(3)
-plot(eqm,'-b','LineWidth',2);
+  hold on
+if (experience==1)
+  plot(eqm,'-b','LineWidth',2);
+elseif(experience==2)
+  plot(eqm,'-b','LineWidth',2);
+else
+  plot(eqm,'-g','LineWidth',2);
+endif
 title('Error ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
+hold off
 
 figure(4)
 plot(global_error_evolution,'LineWidth',2)
@@ -197,14 +209,12 @@ ylabel('Weight value','FontSize',12);
 
 
 %GRAPH : evolution de taux d'apprentissage
-figure(7)
+figure(7*experience)
 plot(storemu,'-o','LineWidth',2)
 grid()
-title('Taux d'apprentissage ','FontSize',12);
+title('Taux d apprentissage ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
-
-
 
 
 %% DOCUMENTATION

@@ -31,6 +31,10 @@ close all
 display('//================================================================//')
 display('//                    RECHERCHE OPERATIONNELLE                    //')
 display('//================================================================//')
+display('')
+display('//================================================================//')
+display('// MLP : mu constante, initialisation de poids selon distr. normal//')
+display('//================================================================//')
 
 %% Exercise 2 - S�lection des attibuts de la base de donn�s d'apprentissage
 in = 1;
@@ -77,9 +81,7 @@ L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
 
 %Init taux d'apprentissage
-alpha = 0.1;
-muo = 0.6
-mu = muo/(1+alpha*1);
+mu = 0.4;
 
 %Init parametres de distribution de proba. poids
 sigma1=1/sqrt(L_in);
@@ -157,8 +159,7 @@ while(boucle==1)
           deltaj_out(neurone) = gprime(vj(neurone))*somme_delta_w(neurone);
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
-        mu = muo/(1+alpha*i);
-        storemu(i)=mu; %store for graphs
+
  %pause
     end
     %je calcule un "error" pour l'afficher aussi
@@ -185,30 +186,26 @@ ylabel('Error','FontSize',12);
 
 figure(4)
 plot(global_error_evolution,'LineWidth',2)
+grid()
 title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 
 figure(5)
 plot(W,'-o','LineWidth',2)
+axis ([0 120 -0.8 0.8])
+grid()
 title('Final Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
 figure(6)
 plot(W_init,'-o','LineWidth',2)
-title('Final Weights ','FontSize',12);
+axis ([0 120 -0.8 0.8])
+grid()
+title('Initial Weights (Normal distribution initialisation) ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
-
-%GRAPH : evolution de taux d'apprentissage
-figure(7)
-plot(storemu,'-o','LineWidth',2)
-title('Final Weights ','FontSize',12);
-xlabel('Weight id','FontSize',12);
-ylabel('Weight value','FontSize',12);
-
-
 
 
 

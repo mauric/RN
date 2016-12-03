@@ -1,7 +1,8 @@
 %% PROJET RESEAUX DE NEURONES
-clc
-clear all
-close all
+%
+% Author : Mauricio Caceres
+% Version : RN_STANDART_V0
+% Comments : fonctionnement normal du reseux, sans aucun optimisation
 
 %% TODO checklist
 %=================================================
@@ -16,8 +17,14 @@ close all
 % - refaire  initialisation de poids -- DONE
 % - verifier matrice de Hamming     -- DONE
 %=================================================
+%
+% You can fork this projet in
+%
+%% https://github.com/mauric/RN.git
 
-
+clc
+clear all
+close all
 display('//================================================================//')
 display('//                    RECHERCHE OPERATIONNELLE                    //')
 display('//================================================================//')

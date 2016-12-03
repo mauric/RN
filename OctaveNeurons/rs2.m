@@ -105,7 +105,7 @@ boucle=1;
 i = 1;
 more off;
 
-t1 = tic; % take the time
+tic; % init counter time
 while(boucle==1)
     %reorganisation des examples
     t(1:3:end) = 1+3*(randperm(20) -1);
@@ -158,6 +158,7 @@ while(boucle==1)
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
         mu = muo/(1+alpha*i);
+        storemu(i)=mu; %store for graphs
  %pause
     end
     %je calcule un "error" pour l'afficher aussi
@@ -172,8 +173,8 @@ while(boucle==1)
         boucle = 0;
     end
 end
-t2 = toc;
-temp = t2 - t1
+elapsed_time = toc;
+
 
 %% calcul de Erreur quadratique moyenne
 figure(3)
@@ -200,6 +201,12 @@ title('Final Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
+%GRAPH : evolution de taux d'apprentissage
+figure(7)
+plot(storemu,'-o','LineWidth',2)
+title('Final Weights ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
 
 
 

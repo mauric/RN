@@ -76,27 +76,36 @@ L_in = 4097+1;%on rajoute le bias
 L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
 
-mu = 0.4 %taux d'apprentissage
-sigma1=1/L_in;
-sigma2 = 1/L_cachee;
-C = lognrnd (mu, sigma, L_in, L_cachee) %[ a + (b-a).*rand(L_in,L_cachee)];
-W = lognrnd (mu, sigma, L_cachee, L_out)%[a + (b-a).*rand(L_cachee,L_out)];
+%Init taux d'apprentissage
+alpha = 0.1;
+muo = 0.6
+mu = muo/(1+alpha*1);
+
+%Init parametres de distribution de proba. poids
+sigma1=1/sqrt(L_in);
+sigma2 = 1/sqrt(L_cachee);
+
+%creation the matrices de poids
+C = normrnd (0, sigma1, L_in, L_cachee); %[ a + (b-a).*rand(L_in,L_cachee)];
+W =   normrnd(0, sigma2, L_cachee, L_out);%[a + (b-a).*rand(L_cachee,L_out)];
+C_init=C;
+W_init= W;
 ym = zeros(3,1);
 
-%% ALGORITHME GENERALs
-%close all
-epsilon=zeros(1,60);
+%% --------------------
+%  ALGORITHME GENERAL
+%% --------------------
 
+%general variables
+epsilon=zeros(1,60); %erreur en chaque iteration
 input = [ones(1,60); attributs];
 e = 1e-4;
 iter =1;
 boucle=1;
-
-%pause
 i = 1;
 more off;
 
-t1 = tic;
+t1 = tic; % take the time
 while(boucle==1)
     %reorganisation des examples
     t(1:3:end) = 1+3*(randperm(20) -1);
@@ -148,6 +157,7 @@ while(boucle==1)
           deltaj_out(neurone) = gprime(vj(neurone))*somme_delta_w(neurone);
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
+        mu = muo/(1+alpha*i);
  %pause
     end
     %je calcule un "error" pour l'afficher aussi
@@ -177,6 +187,22 @@ plot(global_error_evolution,'LineWidth',2)
 title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
+
+figure(5)
+plot(W,'-o','LineWidth',2)
+title('Final Weights ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+
+figure(6)
+plot(W_init,'-o','LineWidth',2)
+title('Final Weights ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+
+
+
+
 
 
 %% DOCUMENTATION

@@ -603,19 +603,28 @@ Réseaux de Neurones, perceptron multi-couches, convergence, backpropagation, de
 
 \section{Modélisation d’un neurone}
 Le modèle utilisé dans ce cas, inspiré dans le fonctionnement de une neurone biologique est le perceptron.
-
-\section{Le perceptron et sa version multicouche}\blindtext
-\subsection{Le perceptron : fonctions de transition classiques}\blindtext
-
+%todo add ssome history
 \begin{figure}[h]
-\centering
-\includegraphics[width=2.5in]{logo}
-%TODO change the image and the caption and label
-\caption{Simulation Results}
-\label{fig_sim}
+	\centering
+	\includegraphics[width=2.5in]{perceptron_modelo}
+	%TODO change the image tiene amarillo aca nada que ver loco
+	\caption{Modèle de perceptron utilise dans le réseau de neurones}
+	\label{fig:perceptron_modelo}
 \end{figure}
-
+Les éléments suivant sont partie du modèle et necessaire pour comprendre le fonctionnement du perceptron.
+\begin{itemize}
+	\item nombre de signaux d'entrée $ x_0,...,x_{N-1} $
+	\item poids de connexions $w_{j,0},...,w_{j,L-1} $
+	\item fonction d'activation $v = k(w,x) $
+	\item fonction de transition $ f $
+	 \item un état de sortie  $s_j=f(v_j) $
+	 \item un entrée fixe: le bias
+\end{itemize}
+%todo mejorar redaction sobre la function sigmoided
+On a utilisé la fonction sigmoide comme fonction de transition. La fonction de activation est la fonction produit escalaire. Les connections entre neurones est faite par le bias du poids. Si la connections a un poid negative est une connection dite \textit{exhibitrice} si est positif est dite \textit{excitatrice}
+\subsection{Le perceptron : fonctions de transition classiques}\blindtext
 \subsection{Le perceptron : rôle de l’unité de biais}\blindtext
+\subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
 
 \begin{figure}[h]
 	\centering
@@ -623,6 +632,19 @@ Le modèle utilisé dans ce cas, inspiré dans le fonctionnement de une neurone 
 	%TODO change the image and the caption and label
 	\caption{Simulation Results}
 	\label{fig_sim}
+\end{figure}
+
+\section{Le perceptron  multicouche}
+À cause de l'impossibilité du perceptron  pour classifier dans certain cas la connection de une couche
+de neurones a une autre supplémentaires nous donne une 
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{sigmoide}
+	%TODO change the image elle est pourri
+	\caption{Fonction sigmoide et sa derivé}
+	\label{fig:sigmoide}
 \end{figure}
 
 \subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
@@ -659,6 +681,12 @@ Le modèle utilisé dans ce cas, inspiré dans le fonctionnement de une neurone 
 
 \subsection{Cas d’un perceptron multicouche : calcul du vecteur gradient}\blindtext
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	DOCUMENT LE PROGRAMME RS(SIMPLE)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{logo}
@@ -667,9 +695,68 @@ Le modèle utilisé dans ce cas, inspiré dans le fonctionnement de une neurone 
 	\label{fig_sim}
 \end{figure}
 
-\section{Quelques règles à suivre...si on veut que cela converge}\blindtext
-\section{temas Annexe A –}\blindtext
 
+
+\section{Quelques règles à suivre...si on veut que cela converge}\blindtext
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	DOCUMENT LE PROGRAMME RS(SIMPLE)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Technique 1 and resultats}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	DOCUMENT LE PROGRAMME RS2
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Technique 2 and resultats}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	DOCUMENT LE PROGRAMME RS3
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Technique 3 and resultats}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 	DOCUMENT LE PROGRAMME RS4
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Technique 5 and resultats}\blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{logo}
+	%TODO change the image and the caption and label
+	\caption{Simulation Results}
+	\label{fig_sim}
+\end{figure}
 
 
 
@@ -773,7 +860,7 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 % is flush with the other column.
 %\enlargethispage{-5in}
 
-
+%De Dnu72 - Trabajo propio, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=23851283
 
 % that's all folks
 \end{document}

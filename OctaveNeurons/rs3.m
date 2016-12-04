@@ -217,7 +217,7 @@ while(boucle==1)
         end
     end %fin boucle de presentation d'examples
       %update mu
-        mu = muo/(1+alpha*iter);
+        mu = muo/(1+alpha*i);
         storemu(i)=mu; %store for graphs
         %calcule eqm pour phase de training
         error = sum(epsilon)/60

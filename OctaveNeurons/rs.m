@@ -36,7 +36,7 @@ for numfich = 1:20
         in=in+1;
     end
 end
-
+attributs_no_normalise = attributs;
 for ligne = 1:size(attributs,1)
     ecart = sqrt(var(attributs(ligne,:)));
     attributs(ligne,:) = (attributs(ligne,:)-mean(attributs(ligne,:)))/ecart;
@@ -90,7 +90,8 @@ b = 0.5;
 C = [ a + (b-a).*rand(L_in,L_cachee)];
 W = [a + (b-a).*rand(L_cachee,L_out)];
 ym = zeros(3,1);
-
+C_init=C;
+W_init= W;
 %% ALGORITHME GENERALs
 %close all
 epsilon=zeros(1,60);
@@ -225,7 +226,7 @@ ylabel('Error value','FontSize',12);
 legend('EQM train','EQM test');
 
 
-figure(5)
+figure(2)
 subplot (2, 1, 1)
 plot(W_init,'-o','LineWidth',2)
 axis ([0 120 -0.8 0.8])
@@ -245,15 +246,32 @@ ylabel('Weight value','FontSize',12);
 %  TEST GRAPHs
 %% --------------------
 
-
-figure(12)
-plot(global_error_evolution_test,'LineWidth',2)
-grid()
-title('Iteration error global evolution test (error in each example) ','FontSize',12);
-xlabel('iterations','FontSize',12);
-ylabel('Error','FontSize',12);
-%% FIN
-
 %% --------------------
 %  DATA BASE GRAPH
 %% --------------------
+
+ figure(4)
+ subplot (2, 1, 1)
+ plot(attributs(:,1:5));
+ axis ([0 120 -1.5 8])
+ grid()
+ title('attributs normalises ','FontSize',12);
+ xlabel('component','FontSize',12);
+ ylabel('attributs value','FontSize',12);
+ subplot (2, 1, 2)
+ plot(attributs_no_normalise(:,1:5));
+ axis ([0 120 -0.5 15])
+ grid()
+ title('Attributs non normalises ','FontSize',12);
+ xlabel('component','FontSize',12);
+ ylabel('attributs value','FontSize',12);
+
+
+ %% --------------------
+ %% DOCUMENTATION
+ %% --------------------
+ % sauvegarde les images pour le rapport
+ h = get(0,'children');
+ for i=length(h):-1:1
+   saveas(h(i), ['rs' num2str(length(h)+1-i)], 'png');
+ end

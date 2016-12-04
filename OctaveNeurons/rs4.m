@@ -283,23 +283,29 @@ end
 elapsed_time = toc
 
 
-%% calcul de Erreur quadratique moyenne
-figure(3)
+
+%% --------------------
+%  TRAIN GRAPHS
+%% --------------------
+figure(5)
 plot(eqm,'-b','LineWidth',2);
-title('Error ','FontSize',12);
+hold on;
+plot(eqm_test,'-r','LineWidth',2);
+grid ();
+title('Error EQM in training and test phase','FontSize',12,'FontName','5');
 xlabel('iterations','FontSize',12);
-ylabel('Error','FontSize',12);
+ylabel('Error value','FontSize',12);
+legend('EQM train','EQM test');
 
 figure(4)
 plot(storemu1,'LineWidth',2)
 grid()
-hold (on)
 plot(storemu2,'LineWidth',2)
-title('mu','FontSize',12);
+title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 
-figure(5)
+figure(6)
 subplot (2, 1, 1)
 plot(W_init,'-o','LineWidth',2)
 axis ([0 120 -0.8 0.8])
@@ -318,21 +324,18 @@ ylabel('Weight value','FontSize',12);
 %% --------------------
 %  TEST GRAPHs
 %% --------------------
-
-
-figure(10)
-  hold on
-plot(eqm_test,'-b','LineWidth',2);
-plot(eqm,'-b','LineWidth',2);
-title('Error test ','FontSize',12);
-xlabel('iterations','FontSize',12);
-ylabel('Error','FontSize',12);
-hold off
-
-figure(12)
-plot(global_error_evolution_test,'LineWidth',2)
+figure(7)
+plot(global_error_evolution,'LineWidth',2)
 grid()
-title('Iteration error global evolution test (error in each example) ','FontSize',12);
+title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 %% FIN
+
+
+%% DOCUMENTATION
+% sauvegarde les images pour le rapport
+h = get(0,'children');
+for i=length(h):-1:1
+  saveas(h(i), ['rs4' num2str(length(h)+1-i)], 'png');
+end

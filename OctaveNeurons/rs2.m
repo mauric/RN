@@ -87,8 +87,8 @@ sigma1=1/sqrt(L_in);
 sigma2 = 1/sqrt(L_cachee);
 
 %creation the matrices de poids
-C = normrnd (0, sigma1, L_in, L_cachee); %[ a + (b-a).*rand(L_in,L_cachee)];
-W =   normrnd(0, sigma2, L_cachee, L_out);%[a + (b-a).*rand(L_cachee,L_out)];
+C = normrnd (0, sigma1, L_in, L_cachee);
+W =   normrnd(0, sigma2, L_cachee, L_out);
 C_init=C;
 W_init= W;
 ym = zeros(3,1);
@@ -141,7 +141,7 @@ while(boucle==1)
          em = ym - y;
         epsilon(i) = (0.5/L_out)*em'*em;
         global_error_evolution(iter) = epsilon(i);
-        % fprintf('error : %f\n', epsilon(i));
+
         % Algorihme de mise � jour des poids de sortie
         deltam_out = em.*gprime(zm);
         for neurone = 1: L_out
@@ -165,8 +165,9 @@ while(boucle==1)
     end
     %je calcule un "error" pour l'afficher aussi
     error = sum(epsilon)/60
-    %fprintf('error : %f\n', error);
-    %fflush(stdout);
+
+    %reset epsilon
+    epsilon_test=zeros(1,60);
 
     %parametre critere pour la fin de l'ALGORITHME
     eqm(iter) = error;
@@ -209,8 +210,90 @@ xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
 
+%% --------------------
+%% TEST
+%% --------------------
 
-%% DOCUMENTATION
+%read data base
+in = 1;
+data_test = zeros(4097,15);
+Nfft = 8912;
+for numfich = 1:5
+    for typeson = 1:3
+        name = ['TEST_',num2str(typeson),'_',num2str(numfich),'.wav']; %'TEST_2_1.wav'
+        [dataTest,fs,Nbits] = wavread(name);%lecture de fichier wav
+        % calcul des data_test
+        L = size(dataTest,1);
+        X = fft(dataTest.*hamming(L),Nfft);
+        Sxx = 1/Nfft*abs(X).^2;
+        data_test(:,in) = Sxx(1:size(data_test,1));
+        in=in+1;
+    end
+end
+
+%normalise data
+for ligne = 1:size(data_test,1)
+    ecart = sqrt(var(data_test(ligne,:)));
+    data_test(ligne,:) = (data_test(ligne,:)-mean(data_test(ligne,:)))/ecart;
+end
+epsilon_test=zeros(1,15); %erreur pour chaque example presenté
+input_test = [ones(1,15); data_test];
+
+tt = zeros(15,1);
+for test_iter = 1:iter
+  %reorganisation des examples
+
+  % tt(1:3:end) = 1+3*(randperm(5) -1);
+  % tt(2:3:end) = 2+3*(randperm(5) -1);
+  % tt(3:3:end) = 3+3*(randperm(5) -1);
+  tt = randperm(15);
+  for i = 1:15
+      %% calcul de sortie de couchee cachee
+      vj = C'*input_test(:,tt(i));
+      r =sigmoide(vj);
+      r(1)=-1;%set a bias
+      %% calcul de sortie de couchee sortie
+      zm = W'*r;
+      % pause
+      y_test = sigmoide(zm);
+
+      %% calcul de l'erreur
+      typeson = rem(tt(i),3);
+      verif_typeson(tt(i)) = typeson; %print this to verified  typeson
+      if typeson == 0
+          ym_test = [0 0 1]';
+      elseif typeson==1
+          ym_test = [1 0 0]';
+       else
+          ym_test = [0 1 0]';
+      end
+      em_test = ym_test - y_test;
+      epsilon_test(i) = (0.5/L_out)*em_test'*em_test
+      global_error_evolution_test(test_iter) = epsilon_test(i);
+
+  end
+  %je calcule un "error" pour l'afficher aussi
+  error_test = sum(epsilon_test)/15
+  eqm_test(test_iter) = error_test;
+  epsilon_test=zeros(1,15);
+end
+
+figure(10)
+  hold on
+plot(eqm_test,'-b','LineWidth',2);
+plot(eqm,'-b','LineWidth',2);
+title('Error test ','FontSize',12);
+xlabel('iterations','FontSize',12);
+ylabel('Error','FontSize',12);
+hold off
+
+figure(12)
+plot(global_error_evolution_test,'LineWidth',2)
+grid()
+title('Iteration error global evolution test (error in each example) ','FontSize',12);
+xlabel('iterations','FontSize',12);
+ylabel('Error','FontSize',12);
+%% FIN
 
 
 

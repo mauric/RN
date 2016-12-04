@@ -28,7 +28,7 @@ display('//================================================================//')
 
 %% Exercise 2 - S�lection des attibuts de la base de donn�s d'apprentissage
 in = 1;
-attributs = zeros(4097,60); % TODO change this init set, calculate it!
+attributs = zeros(4097,60);
 Nfft = 8912;
 for numfich = 1:20
     for typeson = 1:3
@@ -42,11 +42,8 @@ for numfich = 1:20
         in=in+1;
     end
 end
+
 %% CALCUL DES ATTRIBUTS
-%donn�es sans normalisation
- % figure(1)
- % plot(attributs);figure(gcf);
- % title('attributs non normalises')
 %donn�es normalise
 for ligne = 1:size(attributs,1)
     ecart = sqrt(var(attributs(ligne,:)));
@@ -75,8 +72,8 @@ sigma1=1/sqrt(L_in);
 sigma2 = 1/sqrt(L_cachee);
 
 %creation the matrices de poids
-C = normrnd (0, sigma1, L_in, L_cachee); %[ a + (b-a).*rand(L_in,L_cachee)];
-W =   normrnd(0, sigma2, L_cachee, L_out);%[a + (b-a).*rand(L_cachee,L_out)];
+C = normrnd (0, sigma1, L_in, L_cachee);
+W =   normrnd(0, sigma2, L_cachee, L_out);
 C_init=C;
 W_init= W;
 ym = zeros(3,1);
@@ -88,16 +85,16 @@ ym = zeros(3,1);
 %general variables
 epsilon=zeros(1,60); %erreur en chaque iteration
 input = [ones(1,60); attributs];
-e = 1e-4;
+e = 9e-4;
 iter =1;
 boucle=1;
 i = 1;
 more off;
 %Init taux d'apprentissage
-experience = 3;
-alpha = [1.2 0.5 .01];
+experience = 2;%choisir un test
+alpha = 0.2;
 muo = 0.5;
-mu = muo/(1+alpha(experience)*1);
+mu = muo/(1+alpha*1)
 tic; % init counter time
 while(boucle==1)
     %reorganisation des examples
@@ -118,7 +115,6 @@ while(boucle==1)
 
         %% calcul de l'erreur
         typeson = rem(t(i),3);
-        verif_typeson(i) = typeson; %print this to verified  typeson
         if typeson == 0
             ym = [0 0 1]';
         elseif typeson==1
@@ -127,37 +123,32 @@ while(boucle==1)
             ym = [0 1 0]';
         end
 
-        %  em = y - ym;
+
          em = ym - y;
         epsilon(i) = (0.5/L_out)*em'*em;
         global_error_evolution(iter) = epsilon(i);
-        % fprintf('error : %f\n', epsilon(i));
-        % Algorihme de mise � jour des poids de sortie
+
+        % Algorihme de mise à jour des poids de sortie
         deltam_out = em.*gprime(zm);
         for neurone = 1: L_out
             W(:,neurone) = W(:,neurone) + ((mu/L_out)*(deltam_out(neurone)*r));
         end
 
-        % Algorihme de mise � jour des poids d'entr�e
-
+        % Algorihme de mise à jour des poids d'entr�e
         deltaj_out=zeros(L_cachee,1 );
         for neurone = 1:L_cachee
            somme_delta_w(neurone) =  W(neurone,:)*deltam_out;
-
         end
 
         for neurone = 1:L_cachee
           deltaj_out(neurone) = gprime(vj(neurone))*somme_delta_w(neurone);
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
-        mu = muo/(1+alpha(experience)*i);
+        mu = muo/(1+alpha*i);
         storemu(i)=mu; %store for graphs
-
     end
     %je calcule un "error" pour l'afficher aussi
     error = sum(epsilon)/60
-    %fprintf('error : %f\n', error);
-    %fflush(stdout);
 
     %parametre critere pour la fin de l'ALGORITHME
     eqm(iter) = error;
@@ -165,6 +156,15 @@ while(boucle==1)
     if(error<=e)
         boucle = 0;
     endif
+    if(error<=0.001)
+        alpha = 0.5;
+    endif
+    if(error<=0.001)
+        alpha = 0.6;
+    endif
+    if(error<=0.0001)
+    alpha = 0.9;
+  endif
 end
 elapsed_time = toc;
 
@@ -172,13 +172,8 @@ elapsed_time = toc;
 %% calcul de Erreur quadratique moyenne
 figure(3)
   hold on
-if (experience==1)
-  plot(eqm,'-b','LineWidth',2);
-elseif(experience==2)
-  plot(eqm,'-b','LineWidth',2);
-else
-  plot(eqm,'-g','LineWidth',2);
-endif
+
+plot(eqm,'-b','LineWidth',2);
 title('Error ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
@@ -208,17 +203,109 @@ xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
 
+figure(6)
+subplot (2, 1, 1)
+plot(C_init,'-o','LineWidth',2)
+axis ([0 5000 -0.8 0.8])
+grid()
+title('Initial Weights (Normal distribution initialisation) ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+subplot (2, 1, 2)
+plot(C,'-o','LineWidth',2)
+axis ([0 5000 -0.8 0.8])
+grid()
+title('Final Weights ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+
 %GRAPH : evolution de taux d'apprentissage
-figure(7*experience)
+figure(7)
 plot(storemu,'-o','LineWidth',2)
 grid()
 title('Taux d apprentissage ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
+%% --------------------
+%% TEST
+%% --------------------
 
-%% DOCUMENTATION
+%read data base
+in = 1;
+data_test = zeros(4097,15);
+Nfft = 8912;
+for numfich = 1:5
+    for typeson = 1:3
+        name = ['TEST_',num2str(typeson),'_',num2str(numfich),'.wav']; %'TEST_2_1.wav'
+        [dataTest,fs,Nbits] = wavread(name);%lecture de fichier wav
+        % calcul des data_test
+        L = size(dataTest,1);
+        X = fft(dataTest.*hamming(L),Nfft);
+        Sxx = 1/Nfft*abs(X).^2;
+        data_test(:,in) = Sxx(1:size(data_test,1));
+        in=in+1;
+    end
+end
 
+%normalise data
+for ligne = 1:size(data_test,1)
+    ecart = sqrt(var(data_test(ligne,:)));
+    data_test(ligne,:) = (data_test(ligne,:)-mean(data_test(ligne,:)))/ecart;
+end
+epsilon=zeros(1,15); %erreur pour chaque example presenté
+input_test = [ones(1,15); data_test];
 
+tt = zeros(15,1);
+for test_iter = 1:100
+  %reorganisation des examples
+  tt(1:3:end) = 1+3*(randperm(5) -1);
+  tt(2:3:end) = 2+3*(randperm(5) -1);
+  tt(3:3:end) = 3+3*(randperm(5) -1);
 
+  for i = 1:15
+      %% calcul de sortie de couchee cachee
+      vj = C'*input_test(:,tt(i));
+      r =sigmoide(vj);
+      r(1)=-1;%set a bias
+      %% calcul de sortie de couchee sortie
+      zm = W'*r;
+      % pause
+      y_test = sigmoide(zm)
+
+      %% calcul de l'erreur
+      typeson = rem(tt(i),3);
+      verif_typeson(tt(i)) = typeson; %print this to verified  typeson
+      if typeson == 0
+          ym = [0 0 1]';
+      elseif typeson==1
+          ym = [1 0 0]';
+       else
+          ym = [0 1 0]';
+      end
+
+      em = ym - y_test;
+      epsilon_test(i) = (0.5/L_out)*em'*em;
+      global_error_evolution(test_iter) = epsilon(i);
+
+  end
+  %je calcule un "error" pour l'afficher aussi
+  error_test = sum(epsilon_test)/15
+  eqm_test(test_iter) = error_test;
+end
+
+figure(4)
+  hold on
+plot(eqm,'-b','LineWidth',2);
+title('Error ','FontSize',12);
+xlabel('iterations','FontSize',12);
+ylabel('Error','FontSize',12);
+hold off
+
+figure(4)
+plot(global_error_evolution,'LineWidth',2)
+grid()
+title('Iteration error global evolution (error in each example) ','FontSize',12);
+xlabel('iterations','FontSize',12);
+ylabel('Error','FontSize',12);
 %% FIN

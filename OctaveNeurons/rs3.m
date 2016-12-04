@@ -129,7 +129,7 @@ W_init= W;
 ym = zeros(3,1);
 
 %Init taux d'apprentissage
-alpha = 0.05;
+alpha = 0.01;
 muo = 0.5;
 mu = muo/(1+alpha*1)
 
@@ -218,7 +218,7 @@ while(boucle==1)
     end %fin boucle de presentation d'examples
       %update mu
         mu = muo/(1+alpha*i);
-        storemu(i)=mu; %store for graphs
+        storemu(iter)=mu; %store for graphs
         %calcule eqm pour phase de training
         error = sum(epsilon)/60
         eqm(iter) = error;
@@ -264,13 +264,13 @@ while(boucle==1)
           boucle = 0;
       endif
       if(error<=0.001)
-          alpha = 0.4;
+          alpha = 0.3;
       endif
-      if(error<=0.0001)
+      if(error<=0.0009)
           alpha = 0.5;
       endif
-      if(error<=0.00002)
-      alpha = 0.9;
+      if(error<=0.00009)
+      alpha = 0.6;
     endif
 
     iter = iter +1; %counter associate to the while loop
@@ -286,7 +286,7 @@ xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 
 figure(4)
-plot(global_error_evolution,'LineWidth',2)
+plot(storemu,'LineWidth',2)
 grid()
 title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);

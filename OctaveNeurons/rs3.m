@@ -129,7 +129,7 @@ W_init= W;
 ym = zeros(3,1);
 
 %Init taux d'apprentissage
-alpha = 0.01;
+alpha = 0.5;
 muo = 0.5;
 mu = muo/(1+alpha*1)
 
@@ -203,25 +203,24 @@ while(boucle==1)
             W(:,neurone) = W(:,neurone) + ((mu/L_out)*(deltam_out(neurone)*r));
         end
 
-        % Algorihme de mise � jour des poids d'entr�e
-
+        % Algorihme de mise � jour des poids d'entree
         deltaj_out=zeros(L_cachee,1 );
         for neurone = 1:L_cachee
            somme_delta_w(neurone) =  W(neurone,:)*deltam_out;
-
         end
 
         for neurone = 1:L_cachee
           deltaj_out(neurone) = gprime(vj(neurone))*somme_delta_w(neurone);
           C(:,neurone) = C(:,neurone) + (mu/L_out).*input(:,t(i))*deltaj_out(neurone);
         end
+        %update mu
+          mu = muo/(1+alpha*i);
+          storemu(iter)=mu; %store for graphs
+
     end %fin boucle de presentation d'examples
-      %update mu
-        mu = muo/(1+alpha*i);
-        storemu(iter)=mu; %store for graphs
-        %calcule eqm pour phase de training
-        error = sum(epsilon)/60
-        eqm(iter) = error;
+    %calcule eqm pour phase de training
+    error = sum(epsilon)/60
+    eqm(iter) = error;
 
     %% --------------------
     %  TEST LOOP
@@ -263,15 +262,15 @@ while(boucle==1)
     if(error<=e)
           boucle = 0;
       endif
-      if(error<=0.001)
-          alpha = 0.3;
-      endif
-      if(error<=0.0009)
-          alpha = 0.5;
-      endif
-      if(error<=0.00009)
-      alpha = 0.6;
-    endif
+    %   if(error<=0.001)
+    %       alpha = 0.3;
+    %   endif
+    %   if(error<=0.0009)
+    %       alpha = 0.5;
+    %   endif
+    %   if(error<=0.00009)
+    %   alpha = 0.6;
+    % endif
 
     iter = iter +1; %counter associate to the while loop
 end
@@ -311,8 +310,6 @@ ylabel('Weight value','FontSize',12);
 %% --------------------
 %  TEST GRAPHs
 %% --------------------
-
-
 figure(10)
   hold on
 plot(eqm_test,'-b','LineWidth',2);

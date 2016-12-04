@@ -75,9 +75,15 @@ L_out = 3;
 sigma1=1/sqrt(L_in);
 sigma2 = 1/sqrt(L_cachee);
 
+%just a test
+a=-0.5;
+b = 0.5;
+
 %creation the matrices de poids
-C = normrnd (0, sigma1, L_in, L_cachee); %[ a + (b-a).*rand(L_in,L_cachee)];
-W =   normrnd(0, sigma2, L_cachee, L_out);%[a + (b-a).*rand(L_cachee,L_out)];
+C = normrnd (0, sigma1, L_in, L_cachee); 
+W =   normrnd(0, sigma2, L_cachee, L_out);
+
+
 C_init=C;
 W_init= W;
 ym = zeros(3,1);
@@ -110,7 +116,6 @@ while(boucle==1)
     t(3:3:end) = 3+3*(randperm(20) -1);
 
     for i = 1:60
-
         %% calcul de sortie de couchee cachee
         vj = C'*input(:,t(i));
         r =sigmoide(vj);
@@ -210,7 +215,7 @@ ylabel('Weight value','FontSize',12);
 %GRAPH : evolution de taux d'apprentissage
 figure(7)
 plot(storemu1,'-o','LineWidth',2)
-hold on
+hold (on)
 plot(storemu2,'-ob','LineWidth',2)
 grid()
 title('Taux d apprentissage ','FontSize',12);

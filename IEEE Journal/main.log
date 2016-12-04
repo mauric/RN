@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.10.26)  3 DEC 2016 17:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.10.26)  4 DEC 2016 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -556,6 +556,9 @@ LaTeX Warning: Label `fig_sim' multiply defined.
 
 LaTeX Warning: Label `fig_sim' multiply defined.
 
+
+LaTeX Warning: Label `fig_sim' multiply defined.
+
 )
 \openout1 = `main.aux'.
 
@@ -633,27 +636,23 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 475.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 475.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 475.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 475.
-
 <logo.png, id=1, 1401.73688pt x 671.50874pt>
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 499.
+Package pdftex.def Info: logo.png used on input line 504.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 606.
+Package pdftex.def Info: logo.png used on input line 612.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 610.
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 619.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 619.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -661,49 +660,39 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 File: logo.png Graphic file (type png)
 
 <use logo.png>
-Package pdftex.def Info: logo.png used on input line 616.
+Package pdftex.def Info: logo.png used on input line 622.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 626.
-(pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: logo.png Graphic file (type png)
-<use logo.png>
-Package pdftex.def Info: logo.png used on input line 638.
-(pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2]
-File: logo.png Graphic file (type png)
- <use logo.png>
-Package pdftex.def Info: logo.png used on input line 648.
+Package pdftex.def Info: logo.png used on input line 632.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 658.
+Package pdftex.def Info: logo.png used on input line 644.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3]
+ [2]
+File: logo.png Graphic file (type png)
+ <use logo.png>
+Package pdftex.def Info: logo.png used on input line 654.
+(pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
+File: logo.png Graphic file (type png)
+ <use logo.png>
+Package pdftex.def Info: logo.png used on input line 664.
+(pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 738.
- <picture.png, id=19, 84.315pt x 98.3675pt>
+(Font)              <8> on input line 744.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 744.
+
+[3] <picture.png, id=19, 84.315pt x 98.3675pt>
 File: picture.png Graphic file (type png)
  <use picture.png>
-Package pdftex.def Info: picture.png used on input line 754.
+Package pdftex.def Info: picture.png used on input line 760.
 (pdftex.def)             Requested size: 72.27145pt x 84.3167pt.
 File: picture.png Graphic file (type png)
 
 <use picture.png>
-Package pdftex.def Info: picture.png used on input line 754.
+Package pdftex.def Info: picture.png used on input line 760.
 (pdftex.def)             Requested size: 72.27145pt x 84.3167pt.
  [4
 
@@ -713,11 +702,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3446 strings out of 494819
- 49265 string characters out of 6177030
- 114286 words of memory out of 5000000
- 6706 multiletter control sequences out of 15000+600000
- 44590 words of font info for 80 fonts, out of 8000000 for 9000
+ 3436 strings out of 494819
+ 49160 string characters out of 6177030
+ 115286 words of memory out of 5000000
+ 6700 multiletter control sequences out of 15000+600000
+ 42049 words of font info for 75 fonts, out of 8000000 for 9000
  65 hyphenation exceptions out of 8191
  40i,10n,37p,243b,323s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -725,7 +714,7 @@ e/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.p
 fb>
-Output written on main.pdf (4 pages, 108244 bytes).
+Output written on main.pdf (4 pages, 109397 bytes).
 PDF statistics:
  42 PDF objects out of 1000 (max. 8388607)
  25 compressed objects within 1 object stream

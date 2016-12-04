@@ -400,7 +400,7 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Mauricio~Caceres,~\IEEEmembership{Master,~SISEA,ENSSAT,~Lannion}
+\author{Mauricio~Caceres,~\IEEEmembership{Master,~SISEA,~ENSSAT,~Lannion}
       %  and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
 \thanks{M. Pascal Scalart,~Pôle Electronique, Enssat, Lannion,
 France  e-mail: (pascal.scalart@univ-rennes1.fr).}}% <-this % stops a space
@@ -461,7 +461,16 @@ France  e-mail: (pascal.scalart@univ-rennes1.fr).}}% <-this % stops a space
 
 \begin{abstract}
 %\boldmath
-\blindtext[1]
+Ce projet nous amenne à découvrir et faire une première application des concepts de 
+machine learning. Les concepts de machine learning, deep learning, et réseau de neurones
+sont très couramment nommes. Sont très utilises pour la reconnaisances d'"images et la ré"slution
+de problèmes difficiles à modéliser et aussi avec une mathematique difficile à résoudre.
+Les techniques de machine learning ont une nature très empirique mais aussi une partie teorique
+et des fondaments mathematiques.\\
+Dans ce rapport les résultats de l'implementation d'une réseau des neurones multi-couches seront 
+détailles avec differentes notions qui permetent de fondamenter les prise de décision au niveuau de 
+l'implementation.
+
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -472,12 +481,8 @@ France  e-mail: (pascal.scalart@univ-rennes1.fr).}}% <-this % stops a space
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-IEEEtran, journal, \LaTeX, paper, template.
+Réseaux de Neurones, perceptron multi-couches, convergence, backpropagation, descente maximale
 \end{IEEEkeywords}
-
-
-
-
 
 
 % For peer review papers, you can put extra information on the cover
@@ -597,7 +602,8 @@ IEEEtran, journal, \LaTeX, paper, template.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Modélisation d’un neurone}
-\blindtext
+Le modèle utilisé dans ce cas, inspiré dans le fonctionnement de une neurone biologique est le perceptron.
+
 \section{Le perceptron et sa version multicouche}\blindtext
 \subsection{Le perceptron : fonctions de transition classiques}\blindtext
 
@@ -751,9 +757,9 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 %\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
-\blindtext
-\end{IEEEbiography}
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{picture}}]{John Doe}
+%\blindtext
+%\end{IEEEbiography}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate

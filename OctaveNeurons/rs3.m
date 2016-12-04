@@ -92,7 +92,7 @@ i = 1;
 more off;
 %Init taux d'apprentissage
 experience = 2;%choisir un test
-alpha = 0.2;
+alpha = 0.05;
 muo = 0.5;
 mu = muo/(1+alpha*1)
 tic; % init counter time
@@ -157,12 +157,12 @@ while(boucle==1)
         boucle = 0;
     endif
     if(error<=0.001)
-        alpha = 0.5;
-    endif
-    if(error<=0.001)
-        alpha = 0.6;
+        alpha = 0.4;
     endif
     if(error<=0.0001)
+        alpha = 0.5;
+    endif
+    if(error<=0.00002)
     alpha = 0.9;
   endif
 end
@@ -257,8 +257,9 @@ epsilon=zeros(1,15); %erreur pour chaque example presenté
 input_test = [ones(1,15); data_test];
 
 tt = zeros(15,1);
-for test_iter = 1:100
+for test_iter = 1:500
   %reorganisation des examples
+
   tt(1:3:end) = 1+3*(randperm(5) -1);
   tt(2:3:end) = 2+3*(randperm(5) -1);
   tt(3:3:end) = 3+3*(randperm(5) -1);
@@ -277,7 +278,7 @@ for test_iter = 1:100
       typeson = rem(tt(i),3);
       verif_typeson(tt(i)) = typeson; %print this to verified  typeson
       if typeson == 0
-          ym = [0 0 1]';
+          ym = [0 0 1]'
       elseif typeson==1
           ym = [1 0 0]';
        else
@@ -286,7 +287,7 @@ for test_iter = 1:100
 
       em = ym - y_test;
       epsilon_test(i) = (0.5/L_out)*em'*em;
-      global_error_evolution(test_iter) = epsilon(i);
+      global_error_evolution_test(test_iter) = epsilon_test(i);
 
   end
   %je calcule un "error" pour l'afficher aussi
@@ -294,18 +295,18 @@ for test_iter = 1:100
   eqm_test(test_iter) = error_test;
 end
 
-figure(4)
+figure(10)
   hold on
-plot(eqm,'-b','LineWidth',2);
-title('Error ','FontSize',12);
+plot(eqm_test,'-b','LineWidth',2);
+title('Error test ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 hold off
 
-figure(4)
-plot(global_error_evolution,'LineWidth',2)
+figure(12)
+plot(global_error_evolution_test,'LineWidth',2)
 grid()
-title('Iteration error global evolution (error in each example) ','FontSize',12);
+title('Iteration error global evolution test (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);
 ylabel('Error','FontSize',12);
 %% FIN

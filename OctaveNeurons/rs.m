@@ -74,7 +74,7 @@ L_in = 4097+1;%on rajoute le bias
 L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
 
-mu = 0.4 %taux d'apprentissage
+mu = 0.5 %taux d'apprentissage
 a=-0.5;
 b = 0.5;
 C = [ a + (b-a).*rand(L_in,L_cachee)];

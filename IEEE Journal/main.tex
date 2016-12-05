@@ -626,8 +626,15 @@ Les éléments suivant sont partie du modèle et necessaire pour comprendre le f
 %todo mejorar redaction sobre la function sigmoided
 On a utilisé la fonction sigmoide comme fonction de transition. La fonction de activation est la fonction produit escalaire. Les connections entre neurones est faite par le bias du poids. Si la connections a un poid negative est une connection dite \textit{exhibitrice} si est positif est dite \textit{excitatrice}. C'est une manière de modeliser la force de la connection synaptique entre ce perceptron là et une autre à lequel est connecté.
 \subsection{Le perceptron : fonctions de transition classiques}
-Cette fonction nous permets de avoir .....
-\subsection{Le perceptron : rôle de l’unité de biais}\blindtext
+Ce sont les fonctions linaire, sigmoide, tangente hyperbolique ou autres.Cette fonction nous permets avoir la valeur de sortie de la neurone, si elle est positive est dite une neurone actif. Dans le cas contraire es dit inactif.
+Pour notre cas la function sigmoide de la Fig, \ref{fig:sigmoide} c'est la que nous permet avoir des valeur entre 0 et 1. Cela permettra de fixer le seuil d'activité de la neurone j.
+
+
+\subsection{Le perceptron : rôle de l’unité de biais}
+Dans la figure \ref{fig:perceptron_modelo} on peut voir que la premier entrée $ w_{j,0} $ es toujours à -1. La fonction 
+de cette poids qu'on appelle bias est de fixer le seuil d'activation de la neurone. Permettant de déplacer l'hyperplan 
+de la fonction d'activation qui peut-être vu comme une modification de la façon dont la neurone va se comporté face aux données, elle va classifier de manière différente
+
 \subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
 
 \begin{figure}[h]
@@ -685,13 +692,24 @@ de neurones a une autre supplémentaires nous donne une
 
 \section{Cas d’un perceptron multicouche : calcul du vecteur gradient}\blindtext
 
+Avec ce type de réseau on peut traiter different types d'information comme signaux (images, sons). 
+Sont capables de résoudre des problèmes de classification par le bias d'un processus d"apprentissage.
+L'algorithme d'apprentissage es s'agite de 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % 	DOCUMENT LE PROGRAMME RS(SIMPLE)
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cas d’un perceptron multicouche : implementations}\blindtext
+\section{Cas d’un perceptron multicouche : implementations}
+
+\subsection{Base d'apprentissage et de test}
+L'apprentissage va se faire sur les caractéristiques plus fortes de notre données, soit des signaux ou des images ou n'importe quelle autre type de donne. Mais il faut trouver un moyen de représenter ou  les extraire. On appelle attributs à les descriptors de la donnée\\
+Aussi pour des limitations pratiques et d'implementation cette répresentation doit être échantillonné.
+Pour notre application on s'en sert de l'estimation de la DSP (densité spectrale de puissance) du signal à l’aide de la méthode du périodogramme fenêtré.
+
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs3}
@@ -699,6 +717,10 @@ de neurones a une autre supplémentaires nous donne une
 	\caption{Simulation Results}
 	\label{fig_sim}
 \end{figure}
+
+
+
+
 
 \blindtext
 \begin{figure}[h]

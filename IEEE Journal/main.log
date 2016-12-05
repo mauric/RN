@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.10.26)  4 DEC 2016 20:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.10.26)  5 DEC 2016 09:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -589,9 +589,6 @@ LaTeX Warning: Label `fig_sim' multiply defined.
 
 LaTeX Warning: Label `fig_sim' multiply defined.
 
-
-LaTeX Warning: Label `fig_sim' multiply defined.
-
 )
 \openout1 = `main.aux'.
 
@@ -691,13 +688,13 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  <./logo.png> <./perceptron_modelo.png (PNG copy)>]
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 635.
+Package pdftex.def Info: logo.png used on input line 642.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 
 <sigmoide.png, id=20, 213.04594pt x 129.48375pt>
 File: sigmoide.png Graphic file (type png)
  <use sigmoide.png>
-Package pdftex.def Info: sigmoide.png used on input line 648.
+Package pdftex.def Info: sigmoide.png used on input line 655.
 (pdftex.def)             Requested size: 180.67499pt x 109.8167pt.
 
 
@@ -705,16 +702,16 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: logo.png Graphic file (type png)
 <use logo.png>
-Package pdftex.def Info: logo.png used on input line 658.
+Package pdftex.def Info: logo.png used on input line 665.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
  [2 <./sigmoide.png>]
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 670.
+Package pdftex.def Info: logo.png used on input line 677.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 File: logo.png Graphic file (type png)
  <use logo.png>
-Package pdftex.def Info: logo.png used on input line 680.
+Package pdftex.def Info: logo.png used on input line 687.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
 
 
@@ -724,56 +721,52 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: ../OctaveNeurons/rs3.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs3.png>
-Package pdftex.def Info: ../OctaveNeurons/rs3.png used on input line 697.
+Package pdftex.def Info: ../OctaveNeurons/rs3.png used on input line 711.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <../OctaveNeurons/rs2.png, id=26, 578.16pt x 433.62pt>
 File: ../OctaveNeurons/rs2.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs2.png>
-Package pdftex.def Info: ../OctaveNeurons/rs2.png used on input line 706.
+Package pdftex.def Info: ../OctaveNeurons/rs2.png used on input line 724.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
 
 <../OctaveNeurons/rs1.png, id=27, 578.16pt x 433.62pt>
 File: ../OctaveNeurons/rs1.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs1.png>
-Package pdftex.def Info: ../OctaveNeurons/rs1.png used on input line 714.
+Package pdftex.def Info: ../OctaveNeurons/rs1.png used on input line 732.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3]
+ [3 <../OctaveNeurons/rs3.png (PNG copy)>]
 File: logo.png Graphic file (type png)
- <use logo.png>
-Package pdftex.def Info: logo.png used on input line 726.
+
+<use logo.png>
+Package pdftex.def Info: logo.png used on input line 744.
 (pdftex.def)             Requested size: 180.67499pt x 86.55121pt.
- [4 <../OctaveNeurons/rs3.png (PNG copy)> <../OctaveNeurons/rs2.png (PNG copy)>
- <../OctaveNeurons/rs1.png (PNG copy)>]
-<../OctaveNeurons/rs22.png, id=34, 578.16pt x 433.62pt>
+ [4 <../OctaveNeurons/rs2.png (PNG copy)> <../OctaveNeurons/rs1.png (PNG copy)>
+] <../OctaveNeurons/rs22.png, id=34, 562.2606pt x 421.575pt>
 File: ../OctaveNeurons/rs22.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs22.png>
-Package pdftex.def Info: ../OctaveNeurons/rs22.png used on input line 743.
-(pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
+Package pdftex.def Info: ../OctaveNeurons/rs22.png used on input line 761.
+(pdftex.def)             Requested size: 180.67499pt x 135.4664pt.
 
-<../OctaveNeurons/rs21.png, id=35, 578.16pt x 433.62pt>
+<../OctaveNeurons/rs21.png, id=35, 562.2606pt x 421.575pt>
 File: ../OctaveNeurons/rs21.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs21.png>
-Package pdftex.def Info: ../OctaveNeurons/rs21.png used on input line 751.
-(pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
+Package pdftex.def Info: ../OctaveNeurons/rs21.png used on input line 769.
+(pdftex.def)             Requested size: 180.67499pt x 135.4664pt.
 
-<../OctaveNeurons/rs23.png, id=36, 578.16pt x 433.62pt>
+<../OctaveNeurons/rs23.png, id=36, 562.2606pt x 421.575pt>
 File: ../OctaveNeurons/rs23.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs23.png>
-Package pdftex.def Info: ../OctaveNeurons/rs23.png used on input line 759.
-(pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
+Package pdftex.def Info: ../OctaveNeurons/rs23.png used on input line 777.
+(pdftex.def)             Requested size: 180.67499pt x 135.4664pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -782,7 +775,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: ../OctaveNeurons/rs31.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs31.png>
-Package pdftex.def Info: ../OctaveNeurons/rs31.png used on input line 776.
+Package pdftex.def Info: ../OctaveNeurons/rs31.png used on input line 794.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
  [5 <../OctaveNeurons/rs22.png (PNG copy)> <../OctaveNeurons/rs21.png (PNG copy
 )> <../OctaveNeurons/rs23.png (PNG copy)>]
@@ -790,14 +783,14 @@ Package pdftex.def Info: ../OctaveNeurons/rs31.png used on input line 776.
 File: ../OctaveNeurons/rs33.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs33.png>
-Package pdftex.def Info: ../OctaveNeurons/rs33.png used on input line 786.
+Package pdftex.def Info: ../OctaveNeurons/rs33.png used on input line 804.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
 
 <../OctaveNeurons/rs34.png, id=42, 578.16pt x 433.62pt>
 File: ../OctaveNeurons/rs34.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs34.png>
-Package pdftex.def Info: ../OctaveNeurons/rs34.png used on input line 793.
+Package pdftex.def Info: ../OctaveNeurons/rs34.png used on input line 811.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
 
 
@@ -808,32 +801,44 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 File: ../OctaveNeurons/rs31.png Graphic file (type png)
 <use ../OctaveNeurons/rs31.png>
-Package pdftex.def Info: ../OctaveNeurons/rs31.png used on input line 808.
+Package pdftex.def Info: ../OctaveNeurons/rs31.png used on input line 826.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
 
 <../OctaveNeurons/rs32.png, id=43, 578.16pt x 433.62pt>
 File: ../OctaveNeurons/rs32.png Graphic file (type png)
 
 <use ../OctaveNeurons/rs32.png>
-Package pdftex.def Info: ../OctaveNeurons/rs32.png used on input line 816.
+Package pdftex.def Info: ../OctaveNeurons/rs32.png used on input line 834.
 (pdftex.def)             Requested size: 180.67499pt x 135.5059pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 1789) has occurred while \output is active []
+
  [6 <../OctaveNeurons/rs31.png (PNG copy)> <../OctaveNeurons/rs33.png (PNG copy
 )> <../OctaveNeurons/rs34.png (PNG copy)>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 895.
+(Font)              <8> on input line 913.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 895.
+(Font)              <6> on input line 913.
+ [7
 
-[7 <../OctaveNeurons/rs32.png (PNG copy)>] (./main.aux)
+ <../OctaveNeurons/rs32.png (PNG copy)>]
+(./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 3495 strings out of 494819
- 50607 string characters out of 6177030
+ 3497 strings out of 494819
+ 50623 string characters out of 6177030
  117303 words of memory out of 5000000
- 6747 multiletter control sequences out of 15000+600000
+ 6749 multiletter control sequences out of 15000+600000
  40942 words of font info for 74 fonts, out of 8000000 for 9000
  65 hyphenation exceptions out of 8191
  40i,8n,25p,474b,218s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -847,7 +852,7 @@ sfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 1028924 bytes).
+Output written on main.pdf (7 pages, 1022778 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  50 compressed objects within 1 object stream

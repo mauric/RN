@@ -658,15 +658,7 @@ Dans la figure \ref{fig:perceptron_modelo} on peut voir que la premier entrée $
 de cette poids qu'on appelle bias est de fixer le seuil d'activation de la neurone. Permettant de déplacer l'hyperplan 
 de la fonction d'activation qui peut-être vu comme une modification de la façon dont la neurone va se comporté face aux données, elle va classifier de manière différente
 
-\subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{error}
-	%TODO change the image and the caption and label
-	\caption{Courbes indicant l'erreur d'apprentissage (risque empirique) et l'erreur de test(risque réel)}
-	\label{fig:courbesError}
-\end{figure}
 
 \section{Le perceptron  multicouche}
 À cause de l'impossibilité du perceptron  pour classifier dans certain cas la connection de une couche
@@ -685,21 +677,15 @@ de neurones a une autre supplémentaires nous donne une
 \end{figure}
 
 
-
-
 \subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=2.5in]{logo}
+	\includegraphics[width=2in]{error}
 	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
+	\caption{Courbes indicant l'erreur d'apprentissage (risque empirique) et l'erreur de test(risque réel)}
+	\label{fig:courbesError}
 \end{figure}
-
-
-
-
 
 \section{L’apprentissage supervisé}
 Dans le programme du projet on a implimenté une processus d'apprentissage supervisé. Ce algorithme a 
@@ -714,7 +700,7 @@ Notre strategie a été de presenter les examples à l'entrée  $x(n)$ selon le 
 entrée pour après calculer l'erreur.
 
 
-\section{Cas d’un perceptron multicouche : calcul du vecteur gradient}\blindtext
+\section{Algorithme BackPropagation : calcul du vecteur gradient}\blindtext
 
 Avec ce type de réseau on peut traiter different types d'information comme signaux (images, sons). 
 Sont capables de résoudre des problèmes de classification par le bias d'un processus d"apprentissage.
@@ -727,13 +713,15 @@ L'algorithme d'apprentissage es s'agite de
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cas d’un perceptron multicouche : implementations}
+Dans cette section on parlera sur les détails d'implementation de notre réseaux multi-couche. Les strategies
+suivis et les choix de parametres et de techniques de convergence. Il y a quatre codes avec des implementations et techniques differentes. On montrera leur performance et comportement. A la fin on aura 
+des conclusions.
+
 
 \subsection{Base d'apprentissage et de test}
 L'apprentissage va se faire sur les caractéristiques plus fortes de notre données, soit des signaux ou des images ou n'importe quelle autre type de donne. Mais il faut trouver un moyen de représenter ou  les extraire. On appelle attributs à les descriptors de la donnée\\
 Aussi pour des limitations pratiques et d'implementation cette répresentation doit être échantillonné.
 Pour notre application on s'en sert de l'estimation de la DSP (densité spectrale de puissance) du signal à l’aide de la méthode du périodogramme fenêtré.
-
-
 
 \begin{lstlisting}[caption={Code puor initialisation des variables},label=code_initial]
 [dataTest,fs,Nbits] = wavread(name);
@@ -744,22 +732,26 @@ Sxx = 1/Nfft*abs(X).^2;
 data_test(:,in) = Sxx(1:size(data_test,1));
 \end{lstlisting}
 
+%todo escribir algo aca sobre las se;ales
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{../OctaveNeurons/rs5}
+	\caption{Comparation entre les attributs normalisées,non normalisés}
+	\label{fig:AttributsNorm}
+\end{figure}
 
 
 \subsection{Parametrage du MLP}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{../OctaveNeurons/rs3}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
+Notre MLP a 4098 entrées dans la couche d'entrée, connectes chaqu'une a 100 neurones dans la couche cachée. 
+Dans la sortie intermediaire on a donc 100 sortie connectés à l'entrée du la couche de sortie qui a 3 neurones. La sortie de chacune des trois dernières neurones sont la sortie de notre réseaux.\\
+Le taux d'apprentissage nous donne selon l'algorithme de backpropagation le rythme à lequel les poids sont
+modifies pour s'ajuster aux entrées (fit data).
 
 \begin{lstlisting}
-L_in = 4097+1;%on rajoute le bias
-L_cachee = 100+1;%on rajoute le bias
+L_in = 4097+1;
+L_cachee = 100+1;
 L_out = 3;
 mu = 0.5 %taux d'apprentissage
 a=-0.5;
@@ -767,55 +759,131 @@ b = 0.5;
 C = [ a + (b-a).*rand(L_in,L_cachee)];
 W = [a + (b-a).*rand(L_cachee,L_out)];
 \end{lstlisting}
+ Le  parametre $\mu$ est tres importante parce que modifie aussi 
+la duree de la algortihme pour convergence. Si on converge tres rapidement avec un taux d'apprentisage grand
+on ne va pas  bien apprendre la base de données donc on a le risque d'avoir une basse performance au niveau 
+de la distinctions des examples de test parce que la classification est très
+generaliste. Si le taux d'apprentissage es plus petit l'entrainement prendera plus
+de temps et ça faire que le réseaux apprenne
+beacoup mieux les examples. Par contre si on entraine beacoup les neurones il y a
+le risque qu'elle aprenne 
+la base de données tel comme elle est, en commetant ce que on appele
+\textit{overfitting} ou \textit{surapprentissage}. Dans ce cas il faut appliquer
+des techniques especifiques pour obtenir des résultats differentes.On parlera plus
+tard sur ce sujet là.\\
+%todo agregar una referencia a el surapprentisage et aussi a 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{../OctaveNeurons/rs3}
+	\caption{Histogramme des poids de la couche de sortie }
+	\label{fig:histoW}
+\end{figure}
+Les matrices C et W ont le poids du connections entre neurones et entrées et
+sorties. Dans la Fig.\ref{fig:histoW} et la Fig.\ref{fig:histoC} on voit les 
+histogrammes des valeurs des poids pour les connections d'une neurone.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{../OctaveNeurons/rs4}
+	\caption{Histogramme des poids de la couche de cachée}
+	\label{fig:histoC}
+\end{figure}
 
+\subsection{Test sur une version simple du MLP}
 
-\blindtext
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs2}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
+	\caption{Graphique pour comparation des poids de sortie initiaux et finales}
+	\label{fig:SignauxNormalises}
 \end{figure}
-\blindtext
+
+Les courbes les plus importantes sont celles ci que nous montrent comment se comporte
+l'erreur. L'erreur commence au départ à diminuer et ensuite commence à ce stabiliser.
+Le critère d'arrêt de l'algorithme est arriver à un'erreur plus petit que 1e-4.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs1}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
-\blindtext
-
-\section{Amelioration de l'algorithme pour une meuilleur convergence}\blindtext
-\blindtext
-%todo foto de las curvas de convregencia
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{logo}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
+	\caption{Résultats de implementation simple MLP, $\mu=0.5$,initialisation poids non normalement distribuée}
+	\label{fig:CourbeError}
 \end{figure}
 
+\section{Amelioration de l'algorithme pour une meuilleur convergence}
+Entre plusiers techniques pour faire avoir une convergence dans une période des temps aceptable.
+\begin{itemize}
+	\item permutation des examples de la base de données
+	\item même frequence pour classe
+	\item normalisation de l'entrée
+\end{itemize}
+Tous ces astuces sont déjà implementes dans la version base du code. Dans les programmes suivantes on
+a la mise en place de :
+\begin{itemize}
+	\item rs2 : initialisation des poids avec distribution normal
+	\item rs3 : On rajoute un taux d'apprentissage variable
+	\item rs4 : On rajoute deux taux d'apprentissage variable
+\end{itemize}
 
-\section{Technique 1 and resultats}\blindtext
+\section{Programme rs2 : initialisation des poids avec distribution normal}\blindtext
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
 % 	DOCUMENT LE PROGRAMME RS2
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\blindtext
+La initialisation des poids de les matrices W et C sont fais à l'aide d'une function qui genere
+des numeros aleatoires avec une distribution normal centrée et paramètre $ \sigma=\sqrt{m} $
+en étant m les nombres de connection avec la couche précédente.
+\begin{lstlisting}
+L_in = 4097+1;
+L_cachee = 100+1;
+L_out = 3;
+
+%sigmas de distrib. de proba
+sigma1=1/sqrt(L_in);
+sigma2 = 1/sqrt(L_cachee);
+
+%creation the matrices de poids
+C = normrnd (0, sigma1, L_in, L_cachee);
+W =   normrnd(0, sigma2, L_cachee, L_out);	
+\end{lstlisting}
+
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs22}
 	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
+	\caption{Histogramme des poids de la couche de entrée d'une neurone.Distribution Normal }
+\label{fig:histoW}
 \end{figure}
 \blindtext
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{../OctaveNeurons/rs23}
+	%TODO change the image and the caption and label
+	\caption{Histogramme des poids de la couche de sortie d'une neurone.Distribution Normal }
+\label{fig:histoW}
+\end{figure}
+
+\begin{lstlisting}
+rs2 avec mu = 0.5
+
+error =    9.9677e-05
+error_test =  0.014817
+elapsed_time =  37.162
+----------------------
+rs2 avec mu = 0.9
+
+error =    9.9585e-05
+error_test =  0.019871
+elapsed_time =  26.649
+-----------------------
+rs2 avec mu = 0.3
+
+error =    9.9595e-05
+error_test =  0.0095784
+elapsed_time =  73.670
+\end{lstlisting}
+
+Voici la courbe d'erreur d'apprentisage et de test pour une valeur de $\mu=0.5$ 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs21}
@@ -823,23 +891,36 @@ W = [a + (b-a).*rand(L_cachee,L_out)];
 	\caption{Simulation Results}
 	\label{fig_sim}
 \end{figure}
-\blindtext
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{../OctaveNeurons/rs23}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
-
-\section{Technique 2 and resultats}\blindtext
 
 
+\section{Programme rs3 : On rajoute un taux d'apprentissage variable}\blindtext
+
+A cette étape là on fait varier le taux d'apprentissage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % 	DOCUMENT LE PROGRAMME RS3
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting}
+%Init taux d'apprentissage
+alpha = 0.5;
+muo = 0.5;
+mu = muo/(1+alpha*1)
+\end{lstlisting}
+Et dans la boucle principal on fait la mise à jour
+\begin{lstlisting}
+    for i = 1:60 %parcourir la base de donnees
+	    ...
+	    ...
+	    %calcul des sorties, erreur, update poids
+	    ...
+	    ...
+		%update mu
+		mu = muo/(1+alpha*i);
+		storemu(iter)=mu; %store for graphs
+	end
+\end{lstlisting}
 \blindtext
 \begin{figure}[h]
 	\centering
@@ -850,24 +931,8 @@ W = [a + (b-a).*rand(L_cachee,L_out)];
 \end{figure}
 \blindtext
 
-\blindtext
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{../OctaveNeurons/rs33}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{../OctaveNeurons/rs34}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
 
-
-\section{Technique 5 and resultats}\blindtext
+\section{Programme Rs4 : On rajoute deux taux d'apprentissage variable}\blindtext
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % 	DOCUMENT LE PROGRAMME RS4
@@ -883,12 +948,11 @@ W = [a + (b-a).*rand(L_cachee,L_out)];
 \blindtext
 
 
-
-
-
-
 \section{Conclusion}
-\blindtext
+
+Dans cette projet on a vu par le bias de l'implementation de un réseaux de neurones, les 
+effet consequence de la manipulation des differentes parametres du calcul.\\
+La partie empirique est très importante parce que 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

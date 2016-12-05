@@ -83,12 +83,12 @@ t(3:3:end) = 3+3*(randperm(20) -1);
 L_in = 4097+1;%on rajoute le bias
 L_cachee = 100+1;%on rajoute le bias
 L_out = 3;
-
 mu = 0.5 %taux d'apprentissage
 a=-0.5;
 b = 0.5;
 C = [ a + (b-a).*rand(L_in,L_cachee)];
 W = [a + (b-a).*rand(L_cachee,L_out)];
+
 ym = zeros(3,1);
 C_init=C;
 W_init= W;
@@ -231,7 +231,7 @@ subplot (2, 1, 1)
 plot(W_init,'-o','LineWidth',2)
 axis ([0 120 -0.8 0.8])
 grid()
-title('Initial Weights (Normal distribution initialisation) ','FontSize',12);
+title('Initial Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 subplot (2, 1, 2)
@@ -242,6 +242,42 @@ title('Final Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 
+figure(3)
+subplot (2, 1, 1)
+hist (W_init(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Initial Weights','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+subplot (2, 1, 2)
+hist (W(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Final Weights ','FontSize',12);
+xlabel('valuer','FontSize',12);
+
+
+
+figure(4)
+subplot (2, 1, 1)
+hist (C_init(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Initial Weights ','FontSize',12);
+xlabel('Weight id','FontSize',12);
+ylabel('Weight value','FontSize',12);
+subplot (2, 1, 2)
+hist (C(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Final Weights ','FontSize',12);
+xlabel('valuer','FontSize',12);
+
+
+
+
+
 %% --------------------
 %  TEST GRAPHs
 %% --------------------
@@ -250,7 +286,7 @@ ylabel('Weight value','FontSize',12);
 %  DATA BASE GRAPH
 %% --------------------
 
- figure(4)
+ figure(5)
  subplot (2, 1, 1)
  plot(attributs(:,1:5));
  axis ([0 120 -1.5 8])
@@ -265,6 +301,9 @@ ylabel('Weight value','FontSize',12);
  title('Attributs non normalises ','FontSize',12);
  xlabel('component','FontSize',12);
  ylabel('attributs value','FontSize',12);
+
+
+
 
 
  %% --------------------

@@ -292,7 +292,7 @@ ylabel('Error value','FontSize',12);
 legend('EQM train','EQM test');
 
 figure(9)
-plot(storemu,'LineWidth',2)
+plot(storemu,'-bo','LineWidth',2)
 grid()
 title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);

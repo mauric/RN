@@ -300,6 +300,7 @@ legend('EQM train','EQM test');
 figure(4)
 plot(storemu1,'LineWidth',2)
 grid()
+hold on;
 plot(storemu2,'LineWidth',2)
 title('Iteration error global evolution (error in each example) ','FontSize',12);
 xlabel('iterations','FontSize',12);

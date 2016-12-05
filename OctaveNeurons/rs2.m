@@ -279,22 +279,37 @@ xlabel('iterations','FontSize',12);
 ylabel('Error value','FontSize',12);
 legend('EQM train','EQM test');
 
-
-figure(6)
+figure(3)
 subplot (2, 1, 1)
-plot(W_init,'-o','LineWidth',2)
-axis ([0 120 -0.8 0.8])
+hist (W_init(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
 grid()
-title('Initial Weights (Normal distribution initialisation) ','FontSize',12);
+title('Initial Weights','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
 subplot (2, 1, 2)
-plot(W,'-o','LineWidth',2)
-axis ([0 120 -0.8 0.8])
+hist (W(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
 grid()
 title('Final Weights ','FontSize',12);
 xlabel('Weight id','FontSize',12);
 ylabel('Weight value','FontSize',12);
+
+
+figure(4)
+subplot (2, 1, 1)
+hist (C_init(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Initial Weights ','FontSize',12);
+xlabel('valeur','FontSize',12);
+subplot (2, 1, 2)
+hist (C(:,1), 25, "facecolor", "r", "edgecolor", "b");
+colormap (summer ());
+grid()
+title('Final Weights ','FontSize',12);
+xlabel('valuer','FontSize',12);
+
 
 %% --------------------
 %  TEST GRAPHs

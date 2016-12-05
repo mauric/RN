@@ -64,9 +64,22 @@
 % draft mode.
 %
 \documentclass[journal]{IEEEtran}
+\usepackage[utf8]{inputenc}
 \usepackage{blindtext}
 \usepackage{graphicx}
-\usepackage[utf8]{inputenc}
+\usepackage[numbered,framed]{matlab-prettifier}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{listings}
+\lstset{
+	style=Matlab-editor,
+	basicstyle         = \fontsize{8}{11}\ttfamily,
+	numberstyle       =\fontsize{8}{11}\ttfamily,
+	%backgroundcolor=\color{gray},
+	%mlshowsectionrules = true,
+	rangeprefix        = \%\ 
+}
+
 
 % Some very useful LaTeX packages include:
 % (uncomment the ones you want to load)
@@ -625,10 +638,20 @@ Les éléments suivant sont partie du modèle et necessaire pour comprendre le f
 \end{itemize}
 %todo mejorar redaction sobre la function sigmoided
 On a utilisé la fonction sigmoide comme fonction de transition. La fonction de activation est la fonction produit escalaire. Les connections entre neurones est faite par le bias du poids. Si la connections a un poid negative est une connection dite \textit{exhibitrice} si est positif est dite \textit{excitatrice}. C'est une manière de modeliser la force de la connection synaptique entre ce perceptron là et une autre à lequel est connecté.
+
+
 \subsection{Le perceptron : fonctions de transition classiques}
 Ce sont les fonctions linaire, sigmoide, tangente hyperbolique ou autres.Cette fonction nous permets avoir la valeur de sortie de la neurone, si elle est positive est dite une neurone actif. Dans le cas contraire es dit inactif.
 Pour notre cas la function sigmoide de la Fig, \ref{fig:sigmoide} c'est la que nous permet avoir des valeur entre 0 et 1. Cela permettra de fixer le seuil d'activité de la neurone j.
 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=2.5in]{sigmoide}
+	%TODO change the image elle est pourri
+	\caption{Fonction sigmoide et sa derivé}
+	\label{fig:sigmoide}
+\end{figure}
 
 \subsection{Le perceptron : rôle de l’unité de biais}
 Dans la figure \ref{fig:perceptron_modelo} on peut voir que la premier entrée $ w_{j,0} $ es toujours à -1. La fonction 
@@ -639,10 +662,10 @@ de la fonction d'activation qui peut-être vu comme une modification de la faço
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=2.5in]{logo}
+	\includegraphics[width=2.5in]{error}
 	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
+	\caption{Courbes indicant l'erreur d'apprentissage (risque empirique) et l'erreur de test(risque réel)}
+	\label{fig:courbesError}
 \end{figure}
 
 \section{Le perceptron  multicouche}
@@ -650,13 +673,19 @@ de la fonction d'activation qui peut-être vu comme une modification de la faço
 de neurones a une autre supplémentaires nous donne une 
 
 
+
+\subsection{Architecture utilise}
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=2.5in]{sigmoide}
-	%TODO change the image elle est pourri
-	\caption{Fonction sigmoide et sa derivé}
-	\label{fig:sigmoide}
+	\includegraphics[width=2.5in]{arch}
+	%TODO change the image and the caption and label
+	\caption{Architecture de la réseaux utilisé. MLP conventional }
+	\label{fig:ArchitectureMLP}
 \end{figure}
+
+
+
 
 \subsection{L’erreur du perceptron : une fonction multidimensionelle}\blindtext
 
@@ -669,7 +698,23 @@ de neurones a une autre supplémentaires nous donne une
 \end{figure}
 
 \subsection{Le perceptron multi-couches}\blindtext
-\section{L’apprentissage supervisé}\blindtext
+\section{L’apprentissage supervisé}
+Dans le programme du projet on a implimenté une processus d'apprentissage supervisé. Ce algorithme a 
+comme finalité la modificatioon des poids de la couche d"entreé et de sortie permettant de l'adapter aux 
+entrées d'accord à la fonction de coût.
+Il s'agit de presenter dans l'entrée des examples $x(n)$ correspondant à la base de données de entrenaiment et 
+ensuite comparer la sortie $ y(n) $ obtenue à la sortie theorique (classe correcte dans le cadre de la classification) ou correcte. Le fait de savoir à priori lequelle est la sortie correcte fait que l'algorithme
+soit supervisé.\\
+La modification des poids initiaux  va nous amener vers une réseaux entrainé correctement lorsque l'erreur 
+diminue.
+Notre strategie a été de presenter les examples à l'entrée  $x(n)$ selon le type de son, toujours en respectant l'ordre son 1, son 2, son 3. De cette façon on connais toujours quelle classe de son on a en
+entrée pour après calculer l'erreur.
+
+
+
+
+
+
 \subsection{Le perceptron multicouche}\blindtext
 
 \begin{figure}[h]
@@ -710,6 +755,21 @@ Aussi pour des limitations pratiques et d'implementation cette répresentation d
 Pour notre application on s'en sert de l'estimation de la DSP (densité spectrale de puissance) du signal à l’aide de la méthode du périodogramme fenêtré.
 
 
+
+\begin{lstlisting}[caption={Code puor initialisation des variables},label=code_initial]
+[dataTest,fs,Nbits] = wavread(name);
+% calcul des data_test
+L = size(dataTest,1);
+X = fft(dataTest.*hamming(L),Nfft);
+Sxx = 1/Nfft*abs(X).^2;
+data_test(:,in) = Sxx(1:size(data_test,1));
+\end{lstlisting}
+
+
+
+
+\subsection{Parametrage du MLP}
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=2.5in]{../OctaveNeurons/rs3}
@@ -718,7 +778,16 @@ Pour notre application on s'en sert de l'estimation de la DSP (densité spectral
 	\label{fig_sim}
 \end{figure}
 
-
+\begin{lstlisting}
+L_in = 4097+1;%on rajoute le bias
+L_cachee = 100+1;%on rajoute le bias
+L_out = 3;
+mu = 0.5 %taux d'apprentissage
+a=-0.5;
+b = 0.5;
+C = [ a + (b-a).*rand(L_in,L_cachee)];
+W = [a + (b-a).*rand(L_cachee,L_out)];
+\end{lstlisting}
 
 
 
@@ -740,7 +809,7 @@ Pour notre application on s'en sert de l'estimation de la DSP (densité spectral
 \end{figure}
 \blindtext
 
-\section{Quelques règles à suivre...si on veut que cela converge}\blindtext
+\section{Amelioration de l'algorithme pour une meuilleur convergence}\blindtext
 \blindtext
 %todo foto de las curvas de convregencia
 \begin{figure}[h]
@@ -833,14 +902,7 @@ Pour notre application on s'en sert de l'estimation de la DSP (densité spectral
 	\label{fig_sim}
 \end{figure}
 \blindtext
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=2.5in]{../OctaveNeurons/rs32}
-	%TODO change the image and the caption and label
-	\caption{Simulation Results}
-	\label{fig_sim}
-\end{figure}
-\blindtext
+
 
 
 

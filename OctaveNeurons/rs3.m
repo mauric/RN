@@ -163,16 +163,12 @@ tic; % init counter time
 %% --------------------
 while(boucle==1)
     %reorganisation des examples
-    t(1:3:end) = 1+3*(randperm(20) -1);
-    t(2:3:end) = 2+3*(randperm(20) -1);
-    t(3:3:end) = 3+3*(randperm(20) -1);
-    %reorganisation examples de test
-    tt(1:3:end) = 1+3*(randperm(5) -1);
-    tt(2:3:end) = 2+3*(randperm(5) -1);
-    tt(3:3:end) = 3+3*(randperm(5) -1);
+    % t(1:3:end) = 1+3*(randperm(20) -1);
+    % t(2:3:end) = 2+3*(randperm(20) -1);
+    % t(3:3:end) = 3+3*(randperm(20) -1);
+    t = 1:60;
 
     for i = 1:60
-
         %% calcul de sortie de couchee cachee
         vj = C'*input(:,t(i));
         r =sigmoide(vj);
@@ -225,6 +221,11 @@ while(boucle==1)
     %% --------------------
     %  TEST LOOP
     %% --------------------
+    %reorganisation examples de test
+    % tt(1:3:end) = 1+3*(randperm(5) -1);
+    % tt(2:3:end) = 2+3*(randperm(5) -1);
+    % tt(3:3:end) = 3+3*(randperm(5) -1);
+    tt = randperm(15);
     for i = 1:15
         %% calcul de sortie de couchee cachee
         vj_test = C'*input_test(:,tt(i));
